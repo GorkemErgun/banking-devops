@@ -58,4 +58,4 @@ jobs:
             # Klasörün varlığından emin olalım
             mkdir -p /home/ubuntu/banking-app
             chmod +x /home/ubuntu/banking-app/deploy.sh
-            /home/ubuntu/banking-app/deploy.sh
+            /home/ubuntu/banking-app/deploy.sh 
