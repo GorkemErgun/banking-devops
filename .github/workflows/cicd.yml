@@ -38,8 +38,7 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      # ÖNEMLİ: Dosyaları kopyalamadan önce checkout yapmamız şart
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # <--- BU SATIR EKSİK, DOSYALARI ÇEKEN BU!
 
       - name: Copy files to EC2
         uses: appleboy/scp-action@master
@@ -47,10 +46,8 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          # Source kısmını yıldız yaparak tüm dosyaları garantiye alıyoruz
           source: "docker-compose.yml,banking-nginx.conf,deploy.sh"
           target: "/home/ubuntu/banking-app"
-
       - name: Execute remote commands
         uses: appleboy/ssh-action@master
         with:
